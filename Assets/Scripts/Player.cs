@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
             0,
             new Vector2(0, moveDelta.y),
             Mathf.Abs(moveDelta.y * Time.deltaTime),
-            LayerMask.GetMask("Actor", "Blocking")
+            LayerMask.GetMask("Entity", "Blocking")
         );
 
         if (hit.collider == null) {
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour {
             0,
             new Vector2(moveDelta.x, 0),
             Mathf.Abs(moveDelta.x * Time.deltaTime),
-            LayerMask.GetMask("Actor", "Blocking")
+            LayerMask.GetMask("Entity", "Blocking")
         );
 
         if (hit.collider == null) {
