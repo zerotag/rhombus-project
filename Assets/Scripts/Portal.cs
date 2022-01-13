@@ -9,6 +9,7 @@ public class Portal : Collidable {
 
 	protected override void OnCollide(Collider2D collision) {
 		if (collision.name == "Player") {
+			GameManager.instance.SaveState();
 			SceneManager.LoadScene(nextScene.name);
 		}
 	}
