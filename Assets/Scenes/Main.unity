@@ -7306,40 +7306,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4631884039283227457, guid: 254ac5d8282579449a4445a9ffca7a8a, type: 3}
   m_PrefabInstance: {fileID: 351458599}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &778067178 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1341116152072467017, guid: 254ac5d8282579449a4445a9ffca7a8a, type: 3}
-  m_PrefabInstance: {fileID: 351458599}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &778067182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 778067178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f027d0e765951864681d42c3487f8b80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  damagePoint: 0
-  pushForce: 6
-  weaponLevel: 0
 --- !u!1 &1019055853
 GameObject:
   m_ObjectHideFlags: 0

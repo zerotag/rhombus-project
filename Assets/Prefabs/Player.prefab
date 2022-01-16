@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4255362664230802254}
   - component: {fileID: 7013590478993695288}
   - component: {fileID: 6854157770980305140}
+  - component: {fileID: 3720935130071334046}
+  - component: {fileID: 441992409147618086}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -109,6 +111,54 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.28}
   m_EdgeRadius: 0
+--- !u!95 &3720935130071334046
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341116152072467017}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d53383332aa0cda45946bf71b918c80d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &441992409147618086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341116152072467017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f027d0e765951864681d42c3487f8b80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  damagePoint: 1
+  pushForce: 2
+  weaponLevel: 0
 --- !u!1 &4631884039283227463
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,3 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2beffe37fb190344b9608a051a498e32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitpoint: 10
+  maxHitpoint: 10
+  pushRecoverySpeed: 0.1
