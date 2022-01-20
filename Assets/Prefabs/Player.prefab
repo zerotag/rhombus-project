@@ -156,8 +156,18 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  damagePoint: 1
-  pushForce: 2
+  damagePoint: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+  pushForce:
+  - 2
+  - 2.1
+  - 2.2
+  - 2.3
+  - 2.4
+  - 2.5
+  - 2.6
+  - 2.7
+  - 2.8
+  - 3
   weaponLevel: 0
 --- !u!1 &4631884039283227463
 GameObject:

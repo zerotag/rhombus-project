@@ -60,7 +60,7 @@ public class Enemy : Mover {
 
 	protected override void Death() {
 		Destroy(gameObject);
-		GameManager.instance.experience += expValue;
+		GameManager.instance.GrantExp(expValue);
 		GameManager.instance.ShowText(
 			"+" + expValue + " EXP",
 			40,

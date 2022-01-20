@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
 
     // References
     public Player player;
+	public Weapon weapon;
 	public FloatingTextManager floatingTextManager;
 
     // Data
@@ -33,6 +34,66 @@ public class GameManager : MonoBehaviour {
 
 	public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration) {
 		floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+	}
+
+	// Upgrade Weapon
+	public bool TryUpgradeWeapon() {
+		// Check if max level
+		if (weaponPrices.Count <= weapon.weaponLevel) { return false; }
+
+		if (gold >= weaponPrices[weapon.weaponLevel]) {
+			gold -= weaponPrices[weapon.weaponLevel];
+			weapon.UpgradeWeapon();
+			return true;
+		}
+
+		return false;
+	}
+
+	public int GetCurrentLevel() {
+		int r = 0;
+		int add = 0;
+
+		while (experience >= add) {
+			add += expTable[r];
+			r++;
+
+			if (r == expTable.Count) { break; }
+		}
+
+		return r;
+	}
+
+	public int GetExpToLevel(int level) {
+		int r = 0;
+		int exp = 0;
+
+		while (r < level) {
+			exp += expTable[r];
+			r++;
+		}
+
+		return exp;
+	}
+
+	public void GrantExp(int amount) {
+		int currLevel = GetCurrentLevel();
+		experience += amount;
+		if (currLevel < GetCurrentLevel()) {
+			OnLevelUp();
+		}
+	}
+
+	public void OnLevelUp() {
+		GameManager.instance.ShowText(
+			"Level Up",
+			40,
+			Color.magenta,
+			player.transform.position,
+			Vector3.up * 40,
+			1.0f
+		);
+		player.OnLevelUp();
 	}
 
     // Game State
@@ -46,10 +107,10 @@ public class GameManager : MonoBehaviour {
         string s = "";
 
 		// Set Data
-        s += "0"                    + "|";
-        s += gold.ToString()        + "|";
-        s += experience.ToString()  + "|";
-        s += "0";
+        s += "0"                            + "|";
+        s += gold.ToString()                + "|";
+        s += experience.ToString()          + "|";
+        s += weapon.weaponLevel.ToString();
 
         PlayerPrefs.SetString("SaveState", s);
     }
@@ -63,6 +124,7 @@ public class GameManager : MonoBehaviour {
         // Skin
         gold = int.Parse(data[1]);
         experience = int.Parse(data[2]);
-        // Weapon
+		player.SetLevel(GetCurrentLevel());
+        weapon.SetWeaponLevel(int.Parse(data[3]));
     }
 }
