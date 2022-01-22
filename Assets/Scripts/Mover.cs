@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Mover : Fighter {
+	private Vector3 originalSize;
 	protected BoxCollider2D boxCollider;
     protected Vector3 moveDelta;
     protected RaycastHit2D hit;
-	protected float xSpeed = 1.0f;
-	protected float ySpeed = 0.75f;
+	public float xSpeed = 1.0f;
+	public float ySpeed = 0.75f;
 
     protected virtual void Start() {
         boxCollider = GetComponent<BoxCollider2D>();
+		originalSize = transform.localScale;
     }
 
 	protected virtual void UpdateMotor(Vector3 input) {
@@ -23,9 +25,13 @@ public abstract class Mover : Fighter {
 
         // Swap sprite direction
         if (moveDelta.x > 0) {
-            transform.localScale = Vector3.one;
+            transform.localScale = originalSize;
         } else if (moveDelta.x < 0) {
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(
+				originalSize.x * -1,
+				originalSize.y,
+				originalSize.z
+			);
         }
 
 		// Add push and reduce every frame

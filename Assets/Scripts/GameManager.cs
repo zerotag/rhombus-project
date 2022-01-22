@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 
         instance = this;
         SceneManager.sceneLoaded += LoadState;
-        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     // Resources
@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour {
     public Player player;
 	public Weapon weapon;
 	public FloatingTextManager floatingTextManager;
+	public RectTransform hpBar;
+	public Animator deathMenuAnim;
 
     // Data
     public int experience;
@@ -50,6 +52,13 @@ public class GameManager : MonoBehaviour {
 		return false;
 	}
 
+	// Hitpoint Bar
+	public void OnHitpointChange() {
+		float ratio = (float)player.hitpoint / (float)player.maxHitpoint;
+		hpBar.localScale = new Vector3(1, ratio, 1);
+	}
+
+	// Experience
 	public int GetCurrentLevel() {
 		int r = 0;
 		int add = 0;
@@ -94,9 +103,21 @@ public class GameManager : MonoBehaviour {
 			1.0f
 		);
 		player.OnLevelUp();
+		OnHitpointChange();
 	}
 
-    // Game State
+    public void OnSceneLoaded(Scene s, LoadSceneMode mode) {
+		OnHitpointChange();
+		player.transform.position = GameObject.Find("SpawnPoint").transform.position;
+	}
+
+	public void Respawn() {
+		deathMenuAnim.SetTrigger("Hide");
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+		player.Respawn();
+	}
+
+	// Game State
     /*
     ** INT preferedSkin
     ** INT gold
@@ -116,6 +137,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void LoadState(Scene s, LoadSceneMode mode) {
+		SceneManager.sceneLoaded -= LoadState;
+
         if (!PlayerPrefs.HasKey("SaveState")) { return; }
 
         // Get Data
